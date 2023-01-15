@@ -79,6 +79,8 @@ public class OfferController {
         model.addAttribute("models", offerService.getModels());
         model.addAttribute("offerModel", offerModel);
         return "editOffer";
+        git@github.com:Mihail-Mihov/MotoBG.git
+        git remote set-url origin ssh://git@github.com:Mihail-Mihov/MotoBG.git
     }
 
     @PatchMapping("/offers/{id}/edit")
