@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/commons::head">
+</head>
+<body class="bg-secondary">
+<header th:replace="fragments/commons::navigation"></header>
+<main role="main" class="bg-secondary">
+
+
+    <body class="main-bg">
+
+
+
+<div style="text-align: center;">
+
+
+    <div class="form-body align-content-center">
+
+            <div class="form-holder align-content-center">
+                <div class="form-content">
+                    <div class="form-items">
+                        <h3>Добави нова обява за мотор.</h3>
+                        <p>За да добавиш обява попълни полетата по-долу.</p>
+
+
+                        <form th:onsubmit="return check_checkbox()" th:action="@{/offers/add}" th:method="POST" th:object="${OfferDTO}"
+                              class="requires-validation" novalidate>
+
+
+
+                        <div class="row">
+                            <div class="col">
+                                <!-- Tittle input -->
+                                <div class="form-outline">
+                                    <input th:field="*{tittle}" th:errorclass="is-invalid"
+                                            type="text" id="tittle" class="form-control" />
+                                    <p class="invalid-feedback errors alert alert-danger">Заглавието е задължително поле!</p>
+                                    <label class="form-label" for="tittle">Заглавие</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Condition input -->
+                                <div class="form-outline">
+                                    <select id="itemCondition" name="itemCondition" th:field="*{itemCondition}" th:errorclass="is-invalid">
+                                        <option th:each="itemCondition : ${T(com.example.myproject.model.enums.ConditionEnum).values()}"
+                                                th:value="${itemCondition.getDisplayValue()}" th:text="${itemCondition.getDisplayValue()}"
+                                                th:selected="${itemCondition} == *{itemCondition}"></option>
+                                    </select>
+                                    <p class="invalid-feedback errors alert alert-danger">Състояние е задължително поле!</p>
+                                    <label class="form-label" for="itemCondition">Състояние</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- City input -->
+                                <select th:field="*{city}" th:errorclass="is-invalid" class="form-select mt-3">
+                                    <option selected  value="Select category">Избери град</option>
+                                    <option id="city" th:each="city : ${cities}"
+                                            th:text="${city.cityName}" th:value="${city.cityName}">
+                                    </option>
+                                </select>
+                                <p class="invalid-feedback errors alert alert-danger">Град е задължително поле!</p>
+                                <label class="form-label" for="city">Град</label>
+                            </div>
+                        </div>
+
+
+                        <hr />
+
+                        <div class="row">
+                            <div class="col">
+                                <!-- Brand input -->
+                                <select th:field="*{brand}" th:errorclass="is-invalid" class="form-select mt-3">
+                                    <option selected  value="Select category">Избери марка</option>
+                                    <option id="brand" th:each="brand : ${brands}"
+                                            th:text="${brand.brand}" th:value="${brand.brand}">
+                                    </option>
+                                </select>
+                                <p class="invalid-feedback errors alert alert-danger">Марка е задължително поле!</p>
+                                <label class="form-label" for="brand">Марка</label>
+                            </div>
+                            <div class="col">
+                                <!-- Model input -->
+                                <select th:field="*{model}" th:errorclass="is-invalid" class="form-select mt-3">
+                                    <option selected  value="Select category">Избери модел</option>
+                                    <option id="model" th:each="model : ${models}"
+                                            th:text="${model.model}" th:value="${model.model}">
+                                    </option>
+                                </select>
+                                <p class="invalid-feedback errors alert alert-danger">Модел е задължително поле!</p>
+                                <label class="form-label" for="model">Модел</label>
+                            </div>
+                            <div class="col">
+                                <!-- Price input -->
+                                <div class="form-outline">
+                                    <input th:field="*{year}" th:errorclass="is-invalid"
+                                           type="date" id="year" class="form-control" />
+                                    <p class="invalid-feedback errors alert alert-danger">Година е задължително поле!</p>
+                                    <label class="form-label" for="year">Дата на производство</label>
+                                </div>
+                            </div>
+                        </div>
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <!-- Price input -->
+                                    <div class="form-outline">
+                                        <input th:field="*{price}" th:errorclass="is-invalid"
+                                               type="number" id="price" class="form-control" />
+                                        <p class="invalid-feedback errors alert alert-danger">Цената е задължително поле!</p>
+                                        <label class="form-label" for="price">Цена</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr />
+
+
+                            <div class="col-md-12">
+                                <textarea th:field="*{description}" name="description" class="form-control" id="description"
+                                          placeholder="Въведи описание." th:errorclass="is-invalid"
+                                          style="width: 100%; height: 150px;"></textarea>
+                                <p class="invalid-feedback errors alert alert-danger">Описание е задължително поле.</p>
+                                <label class="form-label" for="description">Описание</label>
+                            </div>
+
+                            <div class="col-md-12">
+                                <input th:field="*{imageUrl}" th:errorclass="is-invalid" id="imageUrl"
+                                       class="form-control" type="text" name="imageUrl"
+                                       placeholder="URL на заглавна снимка" >
+                                <p class="invalid-feedback errors alert alert-danger">Снимка е задължително поле!</p>
+                                <label class="form-label" for="imageUrl">URL на заглавна снимка</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="terms">
+                                <label class="form-check-label">I confirm that all data are correct</label>
+                                <div class="invalid-feedback">Please confirm that the entered data are all correct!</div>
+                            </div>
+
+                            <button id="submit" type="submit" class="btn btn-primary">Добави обявата</button>
+                            <div class="form-button mt-3">
+
+                            </div>
+                        </form>
+
+
+<!--                            <div class="col-md-12">-->
+<!--                                <form th:action="@{/pictures/add}" th:method="post" enctype="multipart/form-data">-->
+<!--                                    <input name="picture" type="file">-->
+<!--                                    <input type="submit" value="Submit">-->
+
+
+<!--                                <input th:field="*{imageUrl}"-->
+<!--                                       class="form-control" th:enctype="text">-->
+<!--                                </form>-->
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+    </div>
+
+</div>
+
+
+
+    </body>
+
+</main>
+<div style="text-align: center;"><footer class="container" th:replace="fragments/commons::footer"></footer></div>
+
+</body>
+</html>
