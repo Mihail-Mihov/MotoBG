@@ -724,7 +724,8 @@ h2 {
 }
 
 .container-fluid {
-    max-width: 1200px
+    max-width: 1200px;
+    max-height: 40px;
 }
 
 .card {
@@ -893,6 +894,10 @@ h2 {
 
 .thumb-sec {
     max-width: 300px
+}
+
+.p-2 {
+    padding-right: ($spacer * .9) !important;
 }
 
 @media (max-width: 576px) {
