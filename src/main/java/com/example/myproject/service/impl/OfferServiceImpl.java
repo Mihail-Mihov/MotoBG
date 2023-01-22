@@ -124,6 +124,7 @@ public class OfferServiceImpl implements OfferService {
         OfferEntity offerEntity  =offerRepository.findById(offerModel.getId()).orElseThrow(() ->
                 new ObjectNotFoundException("There is no offer with id: " + offerModel.getId()));
 
+
         offerEntity.setTittle(offerModel.getTittle());
         offerEntity.setItemCondition(offerModel.getItemCondition());
         offerEntity.setCity(offerModel.getCity());

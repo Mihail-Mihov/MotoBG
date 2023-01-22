@@ -55,10 +55,11 @@ public class CommentServiceImpl implements CommentService {
         String formatDateTime = now.format(FORMATTER);
 
         return CommentViewModel.builder()
-                .id(comment.getId())
+//                .id(comment.getId())
                 .canApprove(true)
                 .canDelete(true)
-                .created(formatDateTime)
+
+//                .created(formatDateTime)
                 .comment(comment.getComment())
                 .author(comment.getAuthor().getUsername())
                 .build();
@@ -76,10 +77,11 @@ public class CommentServiceImpl implements CommentService {
         LocalDateTime now = LocalDateTime.now();
         String formatDateTime = now.format(FORMATTER);
 
+
         CommentEntity comment = CommentEntity.builder()
                 .canApprove(false)
                 .comment(commentServiceModel.getComment())
-                .created(formatDateTime)
+//                .created(formatDateTime)
                 .offer(offer)
                 .author(author)
                 .build();

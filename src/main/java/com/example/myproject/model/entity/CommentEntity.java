@@ -21,7 +21,7 @@ public class CommentEntity extends BaseEntity{
     private String comment;
     @ManyToOne
     private OfferEntity offer;
-    private String created;
+//    private String created;
     private boolean canApprove;
     private boolean canDelete;
 
