@@ -54,9 +54,11 @@
                             <div class="col">
                                 <!-- City input -->
                                 <select th:field="*{city}" th:errorclass="is-invalid" class="form-select mt-3">
-                                    <option selected  value="Select category">Избери град</option>
-                                    <option id="city" th:each="city : ${cities}"
-                                            th:text="${city.cityName}" th:value="${city.cityName}">
+                                    <option selected disabled value="Select category">Избери град</option>
+                                    <option id="city"
+                                            th:each="city : ${cities}"
+                                            th:value="${city.cityName}"
+                                            th:text="${city.cityName}">
                                     </option>
                                 </select>
                                 <p class="invalid-feedback errors alert alert-danger">Град е задължително поле!</p>
@@ -71,9 +73,11 @@
                             <div class="col">
                                 <!-- Brand input -->
                                 <select th:field="*{brand}" th:errorclass="is-invalid" class="form-select mt-3">
-                                    <option selected  value="Select category">Избери марка</option>
-                                    <option id="brand" th:each="brand : ${brands}"
-                                            th:text="${brand.brand}" th:value="${brand.brand}">
+                                    <option selected disabled value="Select category">Избери марка</option>
+                                    <option id="brand"
+                                            th:each="brand : ${brands}"
+                                            th:value="${brand.brand}"
+                                            th:text="${brand.brand}">
                                     </option>
                                 </select>
                                 <p class="invalid-feedback errors alert alert-danger">Марка е задължително поле!</p>
@@ -82,9 +86,11 @@
                             <div class="col">
                                 <!-- Model input -->
                                 <select th:field="*{model}" th:errorclass="is-invalid" class="form-select mt-3">
-                                    <option selected  value="Select category">Избери модел</option>
-                                    <option id="model" th:each="model : ${models}"
-                                            th:text="${model.model}" th:value="${model.model}">
+                                    <option selected disabled value="Select category">Избери модел</option>
+                                    <option id="model"
+                                            th:each="model : ${models}"
+                                            th:value="${model.model}"
+                                            th:text="${model.model}">
                                     </option>
                                 </select>
                                 <p class="invalid-feedback errors alert alert-danger">Модел е задължително поле!</p>
