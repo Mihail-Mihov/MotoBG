@@ -43,8 +43,9 @@
                                     <div class="form-outline">
                                         <select id="itemCondition" name="itemCondition" th:field="*{itemCondition}" th:errorclass="is-invalid">
                                             <option th:each="itemCondition : ${T(com.example.myproject.model.enums.ConditionEnum).values()}"
-                                                    th:value="${itemCondition}" th:text="${itemCondition.displayValue}"
-                                                    th:selected="${itemCondition} == *{itemCondition}"></option>
+                                                    th:value="${itemCondition}" th:text="${itemCondition.displayValue}">
+<!--                                                    th:selected="${itemCondition} == *{itemCondition}"-->
+                                            </option>
                                         </select>
                                         <p class="invalid-feedback errors alert alert-danger">Състояние е задължително поле!</p>
                                         <label class="form-label" for="itemCondition">Състояние</label>
@@ -53,9 +54,13 @@
                                 <div class="col">
                                     <!-- City input -->
                                     <select th:field="*{city}" th:errorclass="is-invalid" class="form-select mt-3">
-                                        <option selected  value="Select category">Избери град</option>
-                                        <option id="city" th:each="city : ${cities}"
-                                                th:text="${city.cityName}" th:value="${city}">
+                                        <option selected disabled value="Select city">Избери град</option>
+                                        <option id="city"
+                                                th:each="city_ : ${cities}"
+                                                th:value="${city_.cityName}"
+                                                th:text="${city_.cityName}">
+<!--                                                th:selected="${city_.cityName} == *{city}"-->
+
                                         </option>
                                     </select>
                                     <p class="invalid-feedback errors alert alert-danger">Град е задължително поле!</p>
@@ -70,9 +75,11 @@
                                 <div class="col">
                                     <!-- Brand input -->
                                     <select th:field="*{brand}" th:errorclass="is-invalid" class="form-select mt-3">
-                                        <option selected  value="Select category">Избери марка</option>
-                                        <option id="brand" th:each="brand : ${brands}"
-                                                th:text="${brand.brand}" th:value="${brand}">
+                                        <option selected disabled value="Select brand">Избери марка</option>
+                                        <option id="brand"
+                                                th:each="brand : ${brands}"
+                                                th:value="${brand.brand}"
+                                                th:text="${brand.brand}">
                                         </option>
                                     </select>
                                     <p class="invalid-feedback errors alert alert-danger">Марка е задължително поле!</p>
@@ -81,9 +88,9 @@
                                 <div class="col">
                                     <!-- Model input -->
                                     <select th:field="*{model}" th:errorclass="is-invalid" class="form-select mt-3">
-                                        <option selected  value="Select category">Избери модел</option>
+                                        <option selected disabled value="Select category">Избери модел</option>
                                         <option id="model" th:each="model : ${models}"
-                                                th:text="${model.model}" th:value="${model}">
+                                                th:text="${model.model}" th:value="${model.model}">
                                         </option>
                                     </select>
                                     <p class="invalid-feedback errors alert alert-danger">Модел е задължително поле!</p>
