@@ -25,4 +25,7 @@ public interface OfferRepository extends JpaRepository<OfferEntity, Long> {
 
         @Query(value = "SELECT * FROM offers", nativeQuery = true)
         List<OfferEntity> findAllOffers();
+
+        @Query(value = "DELETE * FROM offers o WHERE o.id = ?1", nativeQuery = true)
+        void deleteById(Long id);
 }

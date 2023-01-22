@@ -67,7 +67,7 @@
                         </div>
                     <div class="m-bot15">
                         <strong>Цена: </strong>
-<!--                        <span th:text="*{price + 50  + 'лв'}" class="amount-old">$544</span>-->
+                        <span th:if="${offer.oldPrice != null}" th:text="*{oldPrice + ' лв'}" class="amount-old">$544</span>
                         <span th:text="*{price + ' лв'}" class="pro-price"> $300.00</span>
                     </div>
                     <th:block th:object="${author}">

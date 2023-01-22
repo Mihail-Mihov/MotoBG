@@ -37,6 +37,7 @@ public class OfferDTO {
     private List<PictureEntity> pictures;
     private boolean canDelete;
     private String sellerFullName;
+    private Double oldPrice;
 
     //    private Instant created;
 //    private Instant modified;

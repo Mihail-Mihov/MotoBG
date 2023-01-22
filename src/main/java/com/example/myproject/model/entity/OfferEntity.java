@@ -43,8 +43,10 @@ public class OfferEntity extends BaseEntity{
     private List<CommentEntity> comments;
     @OneToMany(mappedBy = "offer", fetch = FetchType.LAZY)
     private List<PictureEntity> pictures;
+    private Double oldPrice;
 
     public OfferEntity() {
         this.rate = 0;
+        oldPrice = null;
     }
 }

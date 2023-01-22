@@ -3,14 +3,16 @@ package com.example.myproject.web;
 import com.example.myproject.model.binding.OfferDTO;
 import com.example.myproject.model.entity.UserEntity;
 import com.example.myproject.repository.OfferRepository;
-import com.example.myproject.repository.UserRepository;
 import com.example.myproject.service.OfferService;
 import com.example.myproject.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -88,9 +90,7 @@ public class OfferController {
             BindingResult bindingResult,
             RedirectAttributes redirectAttributes) {
 
-
         if (bindingResult.hasErrors()) {
-
             redirectAttributes.addFlashAttribute("offerModel", offerDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.offerDTO", bindingResult);
 
@@ -107,8 +107,8 @@ public class OfferController {
     }
 
 
-     @PreAuthorize("isOwner(#id)")
-    @DeleteMapping("/courses/{id}")
+    @PreAuthorize("isOwner(#id)")
+    @DeleteMapping("/offers/{id}")
     public String deleteOffer(@PathVariable Long id,
                               @AuthenticationPrincipal User user){
 
@@ -130,6 +130,8 @@ public class OfferController {
         log.info("Zaglavie " + offerById.getTittle());
         log.info("Grad " + offerById.getCity());
         log.info("OPisanie " + offerById.getDescription());
+        log.info("curPrice: " + offerById.getPrice());
+        log.info("oldPrice: " + offerById.getOldPrice());
 
         model.addAttribute("author", author);
         model.addAttribute("offer", offerById);

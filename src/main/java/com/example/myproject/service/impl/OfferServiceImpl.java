@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -83,6 +84,7 @@ public class OfferServiceImpl implements OfferService {
                 .pictures(offer.getPictures())
                 .canDelete(hasPrivileges(currentUser, offer.getId()))
                 .sellerFullName(offer.getAuthor().getFirstName() + " " + offer.getAuthor().getLastName())
+                .oldPrice(offer.getOldPrice())
                 .build();
     }
 
@@ -124,8 +126,17 @@ public class OfferServiceImpl implements OfferService {
 
         offerEntity.setTittle(offerModel.getTittle());
         offerEntity.setItemCondition(offerModel.getItemCondition());
+        offerEntity.setCity(offerModel.getCity());
+        offerEntity.setBrand(offerModel.getBrand());
+        offerEntity.setModel(offerModel.getModel());
+        offerEntity.setYear(offerModel.getYear());
         offerEntity.setDescription(offerModel.getDescription());
         offerEntity.setImageUrl(offerModel.getImageUrl());
+
+        int isPriceChanged = Double.compare(offerEntity.getPrice(), offerModel.getPrice());
+        if (isPriceChanged != 0) {
+            offerEntity.setOldPrice(offerEntity.getPrice());
+        }
         offerEntity.setPrice(offerModel.getPrice());
 
         offerRepository.save(offerEntity);

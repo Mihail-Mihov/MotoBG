@@ -18,8 +18,8 @@
             <div class="form-holder align-content-center">
                 <div class="form-content">
                     <div class="form-items">
-                        <h3>Добави нова обява за мотор.</h3>
-                        <p>За да добавиш обява попълни полетата по-долу.</p>
+                        <h3>Редактиране на обява</h3>
+                        <p>Редактиране на част от полетата.</p>
 
 
                         <form th:onsubmit="return check_checkbox()"  th:action="@{/offers/{id}/edit(id=*{id})}" th:method="patch"
@@ -136,7 +136,7 @@
                                 <div class="invalid-feedback">Please confirm that the entered data are all correct!</div>
                             </div>
 
-                            <button id="submit" type="submit" class="btn btn-primary">Добави обявата</button>
+                            <button id="submit" type="submit" class="btn btn-primary">Редактирай</button>
                             <div class="form-button mt-3">
 
                             </div>
