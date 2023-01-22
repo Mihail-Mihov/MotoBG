@@ -47,8 +47,7 @@ public class OfferDTO {
     private boolean canDelete;
     private String sellerFullName;
     private Double oldPrice;
-
-        private Instant created;
+    private Instant created;
     private Instant modified;
 
 }
