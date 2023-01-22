@@ -24,7 +24,7 @@
 
                         <form th:onsubmit="return check_checkbox()"  th:action="@{/offers/{id}/edit(id=*{id})}" th:method="patch"
                                                 th:object="${offerModel}"
-                              class="requires-validation" novalidate>
+                              class="requires-validation" >
 
 
 
@@ -34,8 +34,8 @@
                                     <div class="form-outline">
                                         <input th:field="*{tittle}" th:errorclass="is-invalid"  name="tittle"
                                                type="text" id="tittle" class="form-control" />
-                                        <p class="invalid-feedback errors alert alert-danger">Заглавието е задължително поле!</p>
                                         <label class="form-label" for="tittle">Заглавие</label>
+                                        <p class="invalid-feedback errors alert alert-danger-bts">Моля добави заглавие!</p>
                                     </div>
                                 </div>
                                 <div class="col">
@@ -47,7 +47,7 @@
 <!--                                                    th:selected="${itemCondition} == *{itemCondition}"-->
                                             </option>
                                         </select>
-                                        <p class="invalid-feedback errors alert alert-danger">Състояние е задължително поле!</p>
+                                        <p class="invalid-feedback errors alert alert-danger-bts">Състояние е задължително поле!</p>
                                         <label class="form-label" for="itemCondition">Състояние</label>
                                     </div>
                                 </div>
@@ -60,10 +60,9 @@
                                                 th:value="${city_.cityName}"
                                                 th:text="${city_.cityName}">
 <!--                                                th:selected="${city_.cityName} == *{city}"-->
-
                                         </option>
                                     </select>
-                                    <p class="invalid-feedback errors alert alert-danger">Град е задължително поле!</p>
+                                    <p class="invalid-feedback errors alert alert-danger-bts">Град е задължително поле!</p>
                                     <label class="form-label" for="city">Град</label>
                                 </div>
                             </div>
@@ -82,7 +81,7 @@
                                                 th:text="${brand.brand}">
                                         </option>
                                     </select>
-                                    <p class="invalid-feedback errors alert alert-danger">Марка е задължително поле!</p>
+                                    <p class="invalid-feedback errors alert alert-danger-bts">Марка е задължително поле!</p>
                                     <label class="form-label" for="brand">Марка</label>
                                 </div>
                                 <div class="col">
@@ -95,7 +94,7 @@
                                                 th:text="${model.model}" >
                                         </option>
                                     </select>
-                                    <p class="invalid-feedback errors alert alert-danger">Модел е задължително поле!</p>
+                                    <p class="invalid-feedback errors alert alert-danger-bts">Модел е задължително поле!</p>
                                     <label class="form-label" for="model">Модел</label>
                                 </div>
                                 <div class="col">
@@ -103,7 +102,7 @@
                                     <div class="form-outline">
                                         <input th:field="*{year}" th:errorclass="is-invalid"
                                                type="date" id="year" class="form-control" />
-                                        <p class="invalid-feedback errors alert alert-danger">Година е задължително поле!</p>
+                                        <p class="invalid-feedback errors alert alert-danger-bts">Година е задължително поле!</p>
                                         <label class="form-label" for="year">Дата на производство</label>
                                     </div>
                                 </div>
@@ -115,7 +114,7 @@
                                     <div class="form-outline">
                                         <input th:field="*{price}" th:errorclass="is-invalid"
                                                type="number" id="price" class="form-control" />
-                                        <p class="invalid-feedback errors alert alert-danger">Цената е задължително поле!</p>
+                                        <p class="invalid-feedback errors alert alert-danger-bts">Въведената цена трябва да е над 100лв!</p>
                                         <label class="form-label" for="price">Цена</label>
                                     </div>
                                 </div>
@@ -128,7 +127,7 @@
                                 <textarea th:field="*{description}" name="description" class="form-control" id="description"
                                           placeholder="Въведи описание." th:errorclass="is-invalid"
                                           style="width: 100%; height: 150px;"></textarea>
-                                <p class="invalid-feedback errors alert alert-danger">Описание е задължително поле.</p>
+                                <p class="invalid-feedback errors alert alert-danger-bts">Моля добави описание.</p>
                                 <label class="form-label" for="description">Описание</label>
                             </div>
 
@@ -136,7 +135,7 @@
                                 <input th:field="*{imageUrl}" th:errorclass="is-invalid" id="imageUrl"
                                        class="form-control" type="text" name="imageUrl"
                                        placeholder="URL на заглавна снимка" >
-                                <p class="invalid-feedback errors alert alert-danger">Снимка е задължително поле!</p>
+                                <p class="invalid-feedback errors alert alert-danger-bts">Моля добави снимка!</p>
                                 <label class="form-label" for="imageUrl">URL на заглавна снимка</label>
                             </div>
                             <div class="form-check">
@@ -173,100 +172,6 @@
         </div>
 
     </div>
-
-
-
-
-<!--    -->
-
-
-<!--    <div style="text-align: center;">-->
-
-<!--        <div class="form-body align-content-center">-->
-<!--            <div class="row">-->
-<!--                <div class="form-holder">-->
-<!--                    <div class="form-content">-->
-<!--                        <div class="form-items">-->
-<!--                            <h3>Edit Your Course</h3>-->
-<!--                            <p>Correct the data below.</p>-->
-
-<!--                            <form th:object="${offerModel}"  th:action="@{/offers/{id}/edit(id=*{id})}" th:method="patch"-->
-<!--                                  class="requires-validation" novalidate>-->
-
-<!--                                <div class="col-md-12">-->
-<!--                                    <input th:field="*{tittle}" th:errorclass="is-invalid"-->
-<!--                                           class="form-control" type="text" name="tittle"-->
-<!--                                           placeholder="Course Title" >-->
-<!--                                    <p class="invalid-feedback errors alert alert-danger">-->
-<!--                                        Title field cannot be blank!-->
-<!--                                    </p>-->
-<!--                                </div>-->
-
-<!--                                <div class="col-md-12">-->
-<!--                                    <input th:field="*{price}" th:errorclass="is-invalid"-->
-<!--                                           class="form-control" type="number" name="price"-->
-<!--                                           placeholder="Enter course price" >-->
-<!--                                    <p class="invalid-feedback errors alert alert-danger">-->
-<!--                                        Price field cannot be blank!-->
-<!--                                    </p>-->
-<!--                                </div>-->
-
-<!--                                <div class="col-md-12">-->
-<!--                                    <select th:field="*{itemCondition}" th:errorclass="is-invalid"-->
-<!--                                            class="form-select mt-3">-->
-<!--                                        <option-->
-<!--                                                selected disabled value="">Select category</option>-->
-<!--                                        <option th:each="itemCondition : ${T(com.example.myproject.model.enums.ConditionEnum).values()}"-->
-<!--                                                th:text="${itemCondition}" th:value="${itemCondition}" th:selected="${itemCondition} == *{itemCondition}"-->
-<!--                                        >-->
-<!--                                        </option>-->
-<!--                                        <p class="invalid-feedback errors alert alert-danger">-->
-<!--                                            Please select a category!-->
-<!--                                        </p>-->
-<!--                                    </select>-->
-<!--                                </div>-->
-
-<!--                                <div class="col-md-12">-->
-<!--                                <textarea th:field="*{description}" name="description" class="form-control"-->
-<!--                                          placeholder="Enter a description." th:errorclass="is-invalid"-->
-<!--                                          style="width: 100%; height: 150px;"></textarea>-->
-<!--                                    <p class="invalid-feedback errors alert alert-danger">-->
-<!--                                        Description is required.-->
-<!--                                    </p>-->
-<!--                                </div>-->
-
-<!--                                <div class="col-md-12">-->
-<!--                                    <input th:field="*{imageUrl}" th:errorclass="is-invalid"-->
-<!--                                           class="form-control" type="text" name="imageUrl"-->
-<!--                                           placeholder="Image URL" >-->
-<!--                                    <p class="invalid-feedback errors alert alert-danger">-->
-<!--                                        ImageUrl field cannot be blank!-->
-<!--                                    </p>-->
-<!--                                </div>-->
-
-<!--                                <div class="form-check">-->
-<!--                                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck"-->
-<!--                                    >-->
-<!--                                    <label class="form-check-label">I confirm that all data are correct</label>-->
-<!--                                    <div-->
-<!--                                            class="invalid-feedback">Please confirm that the entered data are all correct!</div>-->
-<!--                                </div>-->
-
-
-<!--                                <div class="form-button mt-3">-->
-<!--                                    <button id="submit" type="submit" class="btn btn-primary">Edit Course</button>-->
-<!--                                </div>-->
-<!--                            </form>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-
-<!--    </div>-->
-
-
-
 
     </body>
 

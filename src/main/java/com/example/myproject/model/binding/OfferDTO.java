@@ -21,9 +21,9 @@ import java.util.List;
 @Builder
 public class OfferDTO {
 
-    @NotNull
+
     private Long id;
-    @NotNull
+    @NotBlank
     private String tittle;
     @NotBlank
     private String imageUrl;

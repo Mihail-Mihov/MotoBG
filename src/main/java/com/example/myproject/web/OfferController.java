@@ -61,10 +61,10 @@ public class OfferController {
                     .addFlashAttribute("org.springframework.validation.BindingResult.offerAddDTO", bindingResult);
             return "redirect:/offers/add";
         }
-//        log.info(offerDTO.getItemCondition());
-//        log.info(offerDTO.getBrand());
-//        log.info(offerDTO.getCity());
-//        log.info(offerDTO.getModel());
+        log.info(offerDTO.getItemCondition());
+        log.info(offerDTO.getBrand());
+        log.info(offerDTO.getCity());
+        log.info(offerDTO.getModel());
 
        OfferDTO offer  = offerService.addOffer(offerDTO, user.getUsername());
         return "redirect:/offers/" + offer.getId() + "/details";
@@ -83,19 +83,26 @@ public class OfferController {
         return "editOffer";
     }
 
+    @GetMapping("/offers/{id}/edit/errors")
+    public String editOfferErrors(@PathVariable Long id, Model model,
+                            @AuthenticationPrincipal User currentUser) {
+
+        model.addAttribute("cities", offerService.getCities());
+        model.addAttribute("brands", offerService.getBrands());
+        model.addAttribute("models", offerService.getModels());
+        return "editOffer";
+    }
+
     @PatchMapping("/offers/{id}/edit")
     public String patchOffer(
-            @PathVariable Long id,
-            @Valid OfferDTO offerDTO,
-            BindingResult bindingResult,
-            RedirectAttributes redirectAttributes) {
+            @PathVariable Long id, @Valid OfferDTO offerDTO,
+            BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("offerModel", offerDTO);
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.offerDTO", bindingResult);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.offerModel", bindingResult);
 
-            return "redirect:/offers/" + id + "/edit";
-
+            return "redirect:/offers/" + id + "/edit/errors";
         }
 
         OfferDTO serviceModel = modelMapper.map(offerDTO, OfferDTO.class);
