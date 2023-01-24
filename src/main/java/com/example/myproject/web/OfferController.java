@@ -144,6 +144,7 @@ public class OfferController {
         model.addAttribute("offer", offerById);
         model.addAttribute("commentCounter", commentCounter);
         model.addAttribute("authorAddress", authorAddress);
+        model.addAttribute("standardDate", offerById.getYear());
         return "offerDetails";
     }
 
