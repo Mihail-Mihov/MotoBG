@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.Instant;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -85,6 +86,8 @@ public class OfferServiceImpl implements OfferService {
                 .canDelete(hasPrivileges(currentUser, offer.getId()))
                 .sellerFullName(offer.getAuthor().getFirstName() + " " + offer.getAuthor().getLastName())
                 .oldPrice(offer.getOldPrice())
+                .created(offer.getCreated())
+                .modified(offer.getModified())
                 .build();
     }
 
@@ -133,6 +136,7 @@ public class OfferServiceImpl implements OfferService {
         offerEntity.setYear(offerModel.getYear());
         offerEntity.setDescription(offerModel.getDescription());
         offerEntity.setImageUrl(offerModel.getImageUrl());
+        offerEntity.setModified(Instant.now());
 
         int isPriceChanged = Double.compare(offerEntity.getPrice(), offerModel.getPrice());
         if (isPriceChanged != 0) {

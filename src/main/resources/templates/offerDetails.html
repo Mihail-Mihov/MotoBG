@@ -46,37 +46,37 @@
                         </a>
                     </div>
                 </div>
+<!--                Заглавие и описание-->
                 <div class="col-md-6">
                     <ins><h3 th:text="*{tittle}" class="font-weight-bold pro-d-title">
                         <a href="#" class="">
                             Leopard Shirt Dress
                         </a>
                     </h3></ins>
-                    <p th:text="*{description}">
-
-                    </p>
+                    <p th:text="*{description}"></p>
+<!--                    Марка и модел-->
                     <div class="product_meta d-flex">
                         <div class="p-2">
                             <strong>Марка: </strong>
-                            <small class="text-danger" th:text="*{brand}" rel="tag">Brand</small>
+                            <small class="text-danger" th:text="*{brand}" rel="tag"></small>
                         </div>
                         <div class="p-2">
                             <strong>Модел: </strong>
-                            <small class="text-danger" th:text="*{model}" rel="tag">Model</small>
+                            <small class="text-danger" th:text="*{model}" rel="tag"></small>
                         </div>
                     </div>
-
+<!--                    Състояние и година-->
                     <div class="product_meta d-flex">
                         <div class="p-2">
                             <strong>Състояние: </strong>
-                            <small class="text-danger" th:text="*{itemCondition}" rel="tag" th:href="@{/courses/all}">Condition</small>
+                            <small class="text-danger" th:text="*{itemCondition}" rel="tag" th:href="@{/courses/all}"></small>
                         </div>
                         <div class="p-2">
                             <strong>Година: </strong>
-                            <small class="text-danger"  th:text="${#dates.format(standardDate, 'dd-MM-yyyy')}"></small>
+                            <small class="text-danger"  th:text="${#dates.format(manufactureYear, 'dd-MM-yyyy')}"></small>
                         </div>
                     </div>
-
+<!--                        Град и цена-->
                     <div class="product_meta">
                         <strong>Град: </strong>
                         <small class="text-danger" th:text="*{city}" rel="tag" href="#">Address</small>
@@ -87,15 +87,16 @@
                               class="amount-old">$544</span>
                         <span th:text="*{price + ' лв'}" class="pro-price"> $300.00</span>
                     </div>
+<!--                    Продавач и телефон-->
                     <div class="panel-footer row d-flex flex-nowrap">
                         <div class="order-3 p-2">
-                                <span> <strong>Продавач: </strong>
-                        <small class="text-danger" th:text="${author.username}" rel="tag">Author</small></span>
+                                <strong>Продавач: </strong>
+                        <a th:href="@{/users/{id}/details(id= ${author.getId()})}"  class="text-danger" th:text="${author.username}" rel="tag"></a>
                         </div>
 
                         <div class="order-3 p-2">
-                                 <span> <strong>Град: </strong>
-                        <small class="text-danger" th:text="${offer.city}" rel="tag">City</small></span>
+                                <strong>Телефон: </strong>
+                        <small class="text-danger" th:text="${author.phoneNumber}" rel="tag"></small>
                         </div>
                     </div>
 
@@ -120,7 +121,7 @@
                     <!--                        </div>-->
                     <!--                    </th:block>-->
 
-
+<!--                    Update/Delete бутони-->
                     <div class="panel-footer row">
                         <div class="col-xs-6 text-left">
                             <div class="previous">
@@ -137,6 +138,18 @@
                             </div>
                         </div>
                     </div>
+                    <!--                Добавена на и Променена на -->
+                    <div class="product_meta d-flex">
+                        <div class="p-2">
+                            <small>Добавено на: </small>
+                            <small class="text-danger"  th:text="${createDate}"></small>
+                        </div>
+                        <div th:if="${modifyDate != null}" class="p-2">
+                            <small>Последно редактирано: </small>
+                            <small class="text-danger"  th:text="${modifyDate}"></small>
+                        </div>
+                    </div>
+
                     </p>
                 </div>
 
