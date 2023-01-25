@@ -137,14 +137,14 @@ public class OfferController {
         OfferDTO offerById = offerService.findOfferById(id, user.getUsername());
         int commentCounter =  offerRepository.findById(id).get().getComments().size();
 
-//        log.info("Zaglavie " + offerById.getTittle());
-//        log.info("Grad " + offerById.getCity());
-//        log.info("OPisanie " + offerById.getDescription());
-//        log.info("curPrice: " + offerById.getPrice());
-//        log.info("oldPrice: " + offerById.getOldPrice());
-//        log.info("getCreated: " + instantToString(offerById.getCreated()));
-//        log.info("getModified: " + instantToString(offerById.getModified()));
-//        log.info("authorId: " + author.getId());
+        log.info("Zaglavie " + offerById.getTittle());
+        log.info("Grad " + offerById.getCity());
+        log.info("OPisanie " + offerById.getDescription());
+        log.info("curPrice: " + offerById.getPrice());
+        log.info("oldPrice: " + offerById.getOldPrice());
+        log.info("getCreated: " + instantToString(offerById.getCreated()));
+        log.info("getModified: " + instantToString(offerById.getModified()));
+        log.info("authorId: " + author.getId());
 
         model.addAttribute("author", author);
         model.addAttribute("offer", offerById);
