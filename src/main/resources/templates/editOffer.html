@@ -43,7 +43,7 @@
                                     <div class="form-outline">
                                         <select id="itemCondition" name="itemCondition" th:field="*{itemCondition}" th:errorclass="is-invalid">
                                             <option th:each="itemCondition : ${T(com.example.myproject.model.enums.ConditionEnum).values()}"
-                                                    th:value="${itemCondition}" th:text="${itemCondition.displayValue}">
+                                                    th:value="${itemCondition.displayValue}" th:text="${itemCondition.displayValue}">
 <!--                                                    th:selected="${itemCondition} == *{itemCondition}"-->
                                             </option>
                                         </select>
