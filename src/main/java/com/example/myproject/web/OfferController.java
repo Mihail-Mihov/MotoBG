@@ -44,12 +44,12 @@ public class OfferController {
     @GetMapping("/offers/add")
     public String getAddOfferPage(Model model) {
 
-        if (!model.containsAttribute("OfferDTO")) {
-            model.addAttribute("OfferDTO", new OfferDTO());
-            model.addAttribute("cities", offerService.getCities());
-            model.addAttribute("brands", offerService.getBrands());
-            model.addAttribute("models", offerService.getModels());
+        if (!model.containsAttribute("offerDTO")) {
+            model.addAttribute("offerDTO", new OfferDTO());
         }
+        model.addAttribute("cities", offerService.getCities());
+        model.addAttribute("brands", offerService.getBrands());
+        model.addAttribute("models", offerService.getModels());
         return "addOffer";
     }
 
@@ -60,8 +60,8 @@ public class OfferController {
 
         if(bindingResult.hasErrors()){
             redirectAttributes
-                    .addFlashAttribute("OfferDTO", offerDTO)
-                    .addFlashAttribute("org.springframework.validation.BindingResult.offerAddDTO", bindingResult);
+                    .addFlashAttribute("offerDTO", offerDTO)
+                    .addFlashAttribute("org.springframework.validation.BindingResult.offerDTO", bindingResult);
             return "redirect:/offers/add";
         }
 //        log.info(offerDTO.getItemCondition());
