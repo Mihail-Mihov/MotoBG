@@ -4,10 +4,7 @@ import com.example.myproject.model.entity.PictureEntity;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
+import javax.validation.constraints.*;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
@@ -27,8 +24,7 @@ public class OfferDTO {
     private String tittle;
     @NotBlank
     private String imageUrl;
-    @NotNull
-    @DecimalMin("100")
+    @Positive
     private Double price;
     @NotBlank
     private String description;
