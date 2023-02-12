@@ -5,7 +5,7 @@ import com.example.myproject.model.entity.OfferEntity;
 import com.example.myproject.model.entity.UserEntity;
 import com.example.myproject.service.OfferService;
 import com.example.myproject.service.UserService;
-import com.example.myproject.service.impl.MyUserDetailsServiceImpl;
+import com.example.myproject.service.impl.UserDetailsServiceImpl;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
@@ -26,10 +26,10 @@ public class UserController {
 
     private final OfferService offerService;
     private final ModelMapper modelMapper;
-    private final MyUserDetailsServiceImpl myUserDetailsService;
+    private final UserDetailsServiceImpl myUserDetailsService;
     private final UserService userService;
 
-    public UserController(OfferService offerService, ModelMapper modelMapper, MyUserDetailsServiceImpl myUserDetailsService, UserService userService) {
+    public UserController(OfferService offerService, ModelMapper modelMapper, UserDetailsServiceImpl myUserDetailsService, UserService userService) {
         this.offerService = offerService;
         this.modelMapper = modelMapper;
 
