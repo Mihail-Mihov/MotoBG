@@ -2,16 +2,13 @@ package com.example.myproject.config;
 
 import com.example.myproject.model.entity.UserRoleEnum;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
 public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -30,7 +27,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                 // with this line we allow access to all static resources
                         requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll().
                 // the next line allows access to the home page, login page and registration for everyone
-                        antMatchers("/" , "/users/login", "/users/register" , "/courses/all").permitAll().
+                        antMatchers("/" , "/users/login", "/users/register" , "/offers/all").permitAll().
                 antMatchers("/api/**").permitAll().
                 //allows error page access
 
@@ -74,4 +71,6 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
         auth.userDetailsService(userDetailsService)
                 .passwordEncoder(passwordEncoder);
     }
+
+
 }

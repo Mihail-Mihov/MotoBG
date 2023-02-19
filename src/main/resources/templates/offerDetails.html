@@ -125,7 +125,7 @@
                     <div class="panel-footer row">
                         <div class="col-xs-6 text-left">
                             <div class="previous">
-                                <form th:if="*{canDelete}" th:action="@{/offers/{id}(id=*{id})}" th:method="delete">
+                                <form th:if="*{canDelete}" th:action="@{/offers/{id}(id=*{id})}" th:method="post">
                                     <input type="submit" class="btn btn-round btn-danger fa fa-shopping-cart"
                                            value="Delete"/>
                                 </form>

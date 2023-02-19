@@ -49,9 +49,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                         .map(r -> new SimpleGrantedAuthority("ROLE_" + r.getRole().name()))
                         .collect(Collectors.toList());
 
-//        return new User(userEntity.getUsername(),
-//                userEntity.getPassword(), authorities);
-
         return new User(userEntity.getUsername(), userEntity.getPassword(), authorities);
     }
 }
