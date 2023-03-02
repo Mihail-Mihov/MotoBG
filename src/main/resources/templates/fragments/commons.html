@@ -49,13 +49,16 @@
                         <li class="nav-item" >
                             <a class="nav-btn" th:href="@{/offers/all}">Всички мотори</a>
                         </li>
+                        <li sec:authorize="hasRole('ADMIN')">
+                            Rolq admin
+                        </li>
                     </th:block>
 
 
 
                     <th:block  sec:authorize="isAuthenticated()">
 
-                        <li class="nav-item">
+                        <li class="nav-item" >
 
                         </li>
                         <li class="nav-item">

@@ -50,7 +50,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                 // The place where we should land in case that the login is successful
                         defaultSuccessUrl("http://localhost:8080/").
                 // the place where I should land if the login is NOT successful
-                        failureForwardUrl("/users/login").
+                        failureForwardUrl("/users/login-error").
                 and().
                 logout().
                 // This is the URL which spring will implement for me and will log the user out.
