@@ -27,7 +27,7 @@ public class MyErrorController implements ErrorController {
 
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
 
-        logger.info("error code : " + status );
+        logger.info("error code : " + status);
 
         if (status != null) {
             Integer statusCode = Integer.valueOf(status.toString());
@@ -43,7 +43,7 @@ public class MyErrorController implements ErrorController {
             } else if (statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
                 // handle HTTP 500 Internal Server error
                 errorPage = "error-500";
-            }  else if (statusCode == HttpStatus.METHOD_NOT_ALLOWED.value()) {
+            } else if (statusCode == HttpStatus.METHOD_NOT_ALLOWED.value()) {
                 // handle HTTP 405 Internal Server error
                 errorPage = "error-405";
             }

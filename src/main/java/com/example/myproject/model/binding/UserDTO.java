@@ -1,15 +1,10 @@
 package com.example.myproject.model.binding;
 
 import com.example.myproject.model.validator.UniqueUserName;
+import com.example.myproject.model.validator.ValidPassword;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
+import javax.validation.constraints.*;
 
 @Getter
 @Setter
@@ -20,26 +15,27 @@ import javax.validation.constraints.Size;
 public class UserDTO {
 
     private Long id;
-//    @NotBlank
-//    @Size(min=4, max=20)
-//    @UniqueUserName()
+    @NotNull
+    @Size(min = 4, max = 15,
+            message = "Потребителското име трябва да съдържа между 4 и 15 символа. / Това име вече съществува.")
+    @UniqueUserName()
     private String username;
-//    @NotNull
-//    @Email(message = "Email should be valid")
+    @NotNull
+    @Email(message = "Имейлът трябва да бъде валиден.")
     private String email;
-//    @NotNull
-//    @Size(min=4, max=20)
+    @NotNull
+    @Size(min = 3, max = 15,
+            message = "Името трябва да съдържа между 3 и 10 символа.")
     private String firstName;
-//    @NotNull
-//    @Size(min=4, max=20)
+    @NotNull
+    @Size(min = 4, max = 20,
+            message = "Фамилията трябва да съдържа между 4 и 10 символа.")
     private String lastName;
     private String phoneNumber;
     private String homeTown;
-//    @NotNull
-//    @Size(min=4, max=20)
+    @ValidPassword(message = "Паролата трябва да съдържа между 4 и 16 символа, главна, малка буква и цифра.")
     private String password;
-//    @NotNull
-//    @Size(min=4, max=20)
+    @ValidPassword(message = "Паролите не съвпадат")
     private String confirmPassword;
     private String profilePictureUrl;
     private boolean isActive;

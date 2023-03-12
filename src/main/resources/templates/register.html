@@ -23,53 +23,49 @@
                     class="margin-t">
                 <div class="form-group">
                     <input id="username" th:field="*{username}" th:errorclass="is-invalid"
-                           type="text" class="form-control" placeholder="Потребителско име" required="">
+                           type="text" class="form-control" placeholder="Потребителско име">
                     <label class="form-label" for="username">Потребителско име</label>
-                    <p class="invalid-feedback errors alert alert-danger">
-                        Потребителското име е задължително и трябва да бъде между 4 и 20 символа. / Това име вече съсществува.
-                    </p>
+                    <p th:errors="*{username}" class="invalid-feedback errors alert alert-danger">Error</p>
                 </div>
                 <div class="form-group" >
                     <input id="email" th:field="*{email}" th:errorclass="is-invalid"
                         type="text" class="form-control" placeholder="Имейл" >
                     <label class="form-label" for="email">Имейл</label>
-                        <p class="invalid-feedback errors alert alert-danger">Имейлът трябва да бъде валиден.</p>
+                        <p th:errors="*{email}" class="invalid-feedback errors alert alert-danger">Error</p>
                 </div>
                 <div class="form-group">
                     <input id="firstName" th:field="*{firstName}" th:errorclass="is-invalid"
-                            type="text" class="form-control" placeholder="Име" required="">
+                            type="text" class="form-control" placeholder="Име">
                     <label class="form-label" for="firstName">Първо име</label>
-                    <p class="invalid-feedback errors alert alert-danger">Името е задължително и трябва да бъде между 4 и 20 символа.</p>
+                    <p th:errors="*{firstName}" class="invalid-feedback errors alert alert-danger">Error</p>
                 </div>
                 <div class="form-group">
                     <input id="lastName" th:field="*{lastName}" th:errorclass="is-invalid"
-                            type="text" class="form-control" placeholder="Фамилия" required="">
+                            type="text" class="form-control" placeholder="Фамилия">
                     <label class="form-label" for="lastName">Фамилия</label>
-                    <p class="invalid-feedback errors alert alert-danger">Фамилията трябва да бъде между 4 и 20 символа.</p>
+                    <p th:errors="*{lastName}" class="invalid-feedback errors alert alert-danger">Error</p>
                 </div>
                 <div class="form-group">
-                    <input id="phoneNumber" th:field="*{phoneNumber}" th:errorclass="is-invalid"
-                           type="text" class="form-control" placeholder="Телефонен номер" required="">
+                    <input id="phoneNumber" th:field="*{phoneNumber}"
+                           type="text" class="form-control" placeholder="Телефонен номер">
                     <label class="form-label" for="phoneNumber">Телефонен номер</label>
-                    <p class="invalid-feedback errors alert alert-danger">Моля въведи телефон.</p>
                 </div>
                 <div class="form-group">
-                    <input id="homeTown" th:field="*{homeTown}" th:errorclass="is-invalid"
-                           type="text" class="form-control" placeholder="Град" required="">
+                    <input id="homeTown" th:field="*{homeTown}"
+                           type="text" class="form-control" placeholder="Град">
                     <label class="form-label" for="homeTown">Град</label>
-                    <p class="invalid-feedback errors alert alert-danger">Моля въведи град.</p>
                 </div>
                 <div class="form-group">
                     <input id="password" th:field="*{password}" th:errorclass="is-invalid"
-                            type="password" class="form-control" placeholder="Парола" required="">
+                            type="password" class="form-control" placeholder="Парола">
                     <label class="form-label" for="password">Парола</label>
-                    <p class="invalid-feedback errors alert alert-danger">Паролата е задължителна и трябва да бъде между 4 и 20 символа.</p>
+                    <p th:errors="*{password}" class="invalid-feedback errors alert alert-danger">Error</p>
                 </div>
                 <div class="form-group">
                     <input id="confirmPassword" th:field="*{confirmPassword}" th:errorclass="is-invalid"
-                            type="password" class="form-control" placeholder="Потвърди паролата" required="">
+                            type="password" class="form-control" placeholder="Потвърди паролата">
                     <label class="form-label" for="confirmPassword">Потвърди паролата</label>
-                        <p class="invalid-feedback errors alert alert-danger">Паролите не съвпадат.</p>
+                        <p th:errors="*{confirmPassword}" class="invalid-feedback errors alert alert-danger">Error</p>
                     </div>
 
                 <button type="submit" class="form-button button-l margin-b">Регистрация</button>

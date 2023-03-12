@@ -33,17 +33,22 @@ public class UserRegistrationController {
         return "register";
     }
 
+    @GetMapping("/users/register-errors")
+    public String registerUserError() {
+        return "register";
+    }
+
     @PostMapping("/users/register")
     public String register(
             @Valid UserDTO userDTO,
             BindingResult bindingResult,
             RedirectAttributes redirectAttributes) {
-
         if (bindingResult.hasErrors() || !userDTO.getPassword().equals(userDTO.getConfirmPassword())) {
             redirectAttributes.addFlashAttribute("userDTO", userDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userDTO", bindingResult);
 
-            return "redirect:/users/register";
+        //    bindingResult.getAllErrors().stream().forEach(e -> System.out.println(e.getDefaultMessage()));
+            return "redirect:/users/register-errors";
         }
 
         userService.registerAndLoginUser(userDTO);
