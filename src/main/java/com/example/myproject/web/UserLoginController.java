@@ -21,7 +21,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
                     @ModelAttribute(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY)
                             String userName,
                     RedirectAttributes attributes) {
-                //todo da proverq dali bad kredenshals raboti, zashtoto ako ne sashtestvuva usera samo vrashta log v ideto - [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported
                 attributes.addFlashAttribute("bad_credentials", true);
                 attributes.addFlashAttribute("username", userName);
 
