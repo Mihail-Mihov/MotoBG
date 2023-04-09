@@ -20,6 +20,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
         this.userDetailsService = userDetailsService;
         this.passwordEncoder = passwordEncoder;
     }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.
@@ -32,10 +33,10 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                 //allows error page access
 
                 // we permit the page below only for admin users
-                        antMatchers("/statistics").hasRole(UserRoleEnum.ADMIN.name()).
+                        antMatchers("/adminPanel").hasRole(UserRoleEnum.ADMIN.name()).
                 // next we forbid all other pages for unauthenticated users.
-                   //     antMatchers("/**").authenticated().
-                           antMatchers("/**").authenticated().
+                //     antMatchers("/**").authenticated().
+                        antMatchers("/**").authenticated().
                 and().
                 // configure login with login HTML form with two input fileds
                         formLogin().
@@ -63,6 +64,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                         deleteCookies("JSESSIONID");
 
     }
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         //This gives spring two important components.

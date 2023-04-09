@@ -1,1 +1,1 @@
-web: java -jar target/CourseProject-2.5.6.jar
+web: java -jar target/MotoBG-2.5.6.jar

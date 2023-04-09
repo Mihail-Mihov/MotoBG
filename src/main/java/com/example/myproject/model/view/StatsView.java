@@ -1,5 +1,10 @@
 package com.example.myproject.model.view;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class StatsView {
 
     private final int authRequests;

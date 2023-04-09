@@ -14,11 +14,11 @@ public class StatsController {
         this.statsService = statsService;
     }
 
-    @GetMapping("/statistics")
+    @GetMapping("/adminPanel")
     public ModelAndView statistics(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("stats", statsService.getStats());
-        modelAndView.setViewName("stats");
+        modelAndView.setViewName("adminPanel");
         return modelAndView;
     }
 }
