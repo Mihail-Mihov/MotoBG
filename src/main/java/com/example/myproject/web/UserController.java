@@ -1,6 +1,7 @@
 package com.example.myproject.web;
 
 import com.example.myproject.model.binding.UserDTO;
+import com.example.myproject.model.binding.UserUpdateDTO;
 import com.example.myproject.model.entity.OfferEntity;
 import com.example.myproject.model.entity.UserEntity;
 import com.example.myproject.service.OfferService;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -20,7 +22,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Set;
-
 @Controller
 public class UserController {
 
@@ -32,9 +33,13 @@ public class UserController {
     public UserController(OfferService offerService, ModelMapper modelMapper, UserDetailsServiceImpl myUserDetailsService, UserService userService) {
         this.offerService = offerService;
         this.modelMapper = modelMapper;
-
         this.myUserDetailsService = myUserDetailsService;
         this.userService = userService;
+    }
+
+    @ModelAttribute("profileModel")
+    public UserUpdateDTO userModel() {
+        return new UserUpdateDTO();
     }
 
     @GetMapping("/")
@@ -62,13 +67,18 @@ public class UserController {
         return "profile";
     }
 
+    @GetMapping("profile/edit-errors")
+    public String showMyProfileError() {
+        return "editProfile";
+    }
+
     @GetMapping("/profile/edit")
     public String editProfile( Model model,
                                @AuthenticationPrincipal User currentUser) {
 
         UserEntity userEntity = userService.getUserByUsername(currentUser.getUsername());
 
-        UserDTO profile = modelMapper.map(userEntity, UserDTO.class);
+        UserUpdateDTO profile = modelMapper.map(userEntity, UserUpdateDTO.class);
         profile.setCanUpdate(true);
 
         model.addAttribute("profileModel", profile);
@@ -77,17 +87,16 @@ public class UserController {
 
     @PatchMapping("/profile/edit")
     public String editProfile(
-            @Valid UserDTO profileModel,
+            @Valid UserUpdateDTO profileModel,
             @AuthenticationPrincipal User currentUser,
             BindingResult bindingResult,
             RedirectAttributes redirectAttributes) {
-
 
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("profileModel", profileModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.profileModel", bindingResult);
 
-            return "redirect:/editProfile";
+            return "redirect:/profile/edit-errors";
         }
         UserDTO userDTO = modelMapper.map(profileModel, UserDTO.class);
         userDTO.setId(userService.getUserByUsername(currentUser.getUsername()).getId());

@@ -16,8 +16,11 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class BrandEntity extends BaseEntity{
+public class BrandEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Column(nullable = false)
     String brand;
     @OneToMany(mappedBy = "brand", fetch = FetchType.EAGER)

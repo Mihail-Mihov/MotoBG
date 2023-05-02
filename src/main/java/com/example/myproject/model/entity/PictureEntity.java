@@ -12,9 +12,11 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Data
 @Builder
-public class PictureEntity extends BaseEntity {
+public class PictureEntity {
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String title;
     private String imageUrl;
     @ManyToOne

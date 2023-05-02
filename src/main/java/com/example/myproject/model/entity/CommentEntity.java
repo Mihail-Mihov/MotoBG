@@ -2,9 +2,7 @@ package com.example.myproject.model.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "comments")
@@ -14,8 +12,11 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @Builder
 @Data
-public class CommentEntity extends BaseEntity{
+public class CommentEntity{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @ManyToOne
     private UserEntity author;
     private String comment;

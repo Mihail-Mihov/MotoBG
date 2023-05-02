@@ -3,7 +3,7 @@ package com.example.myproject.service.impl;
 import com.example.myproject.model.binding.UserDTO;
 import com.example.myproject.model.entity.UserEntity;
 import com.example.myproject.model.entity.UserRoleEntity;
-import com.example.myproject.model.entity.UserRoleEnum;
+import com.example.myproject.model.enums.UserRoleEnum;
 import com.example.myproject.repository.UserRepository;
 import com.example.myproject.repository.UserRoleRepository;
 import com.example.myproject.service.UserService;
@@ -16,9 +16,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
+import java.util.logging.Logger;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -39,6 +41,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @PostConstruct
     public void initializeUsersAndRoles() {
       initializeRoles();
         //initializeUsers();

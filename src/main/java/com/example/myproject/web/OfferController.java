@@ -64,11 +64,6 @@ public class OfferController {
                     .addFlashAttribute("org.springframework.validation.BindingResult.offerDTO", bindingResult);
             return "redirect:/offers/add";
         }
-//        log.info(offerDTO.getItemCondition());
-//        log.info(offerDTO.getBrand());
-//        log.info(offerDTO.getCity());
-//        log.info(offerDTO.getModel());
-
        OfferDTO offer  = offerService.addOffer(offerDTO, user.getUsername());
         return "redirect:/offers/" + offer.getId() + "/details";
     }

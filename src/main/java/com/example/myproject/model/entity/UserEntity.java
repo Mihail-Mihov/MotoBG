@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,8 +15,11 @@ import java.util.Set;
 @AllArgsConstructor
 @Data
 @Builder
-public class UserEntity extends BaseEntity {
+public class UserEntity{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Column(nullable = false, unique = true)
     private String username;
     @Column(nullable = false, unique = true)
@@ -38,9 +42,20 @@ public class UserEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Set<UserRoleEntity> roles;
     private int active;
+    private Instant created;
+    private Instant modified;
 
     public UserEntity() {
         this.roles = new HashSet<>();
         this.profilePictureUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHUvOd8Q-VihyupbJCdgjIR2FxnjGtAgMu3g&usqp=CAU";
+    }
+    @PrePersist
+    public void beforeCreate(){
+        this.created = Instant.now();
+    }
+
+    @PostPersist
+    public void onUpdate(){
+        this.modified = Instant.now();
     }
 }

@@ -5,6 +5,7 @@ import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 
@@ -15,8 +16,11 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @Builder
-public class OfferEntity extends BaseEntity{
+public class OfferEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Column(nullable = false)
     private String tittle;
     private Integer rate;
@@ -44,9 +48,20 @@ public class OfferEntity extends BaseEntity{
     @OneToMany(mappedBy = "offer", fetch = FetchType.LAZY)
     private List<PictureEntity> pictures;
     private Double oldPrice;
+    private Instant created;
+    private Instant modified;
 
     public OfferEntity() {
         this.rate = 0;
         oldPrice = null;
+    }
+    @PrePersist
+    public void beforeCreate(){
+        this.created = Instant.now();
+    }
+
+    @PostPersist
+    public void onUpdate(){
+        this.modified = Instant.now();
     }
 }

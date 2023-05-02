@@ -2,6 +2,7 @@ package com.example.myproject.service.impl;
 
 import com.example.myproject.model.binding.OfferDTO;
 import com.example.myproject.model.entity.*;
+import com.example.myproject.model.enums.UserRoleEnum;
 import com.example.myproject.repository.*;
 import com.example.myproject.service.OfferService;
 import com.example.myproject.web.exception.ObjectNotFoundException;
@@ -11,7 +12,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.time.Instant;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
