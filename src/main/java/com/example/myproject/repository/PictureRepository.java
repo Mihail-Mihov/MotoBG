@@ -12,6 +12,6 @@ public interface PictureRepository extends JpaRepository<PictureEntity, Long> {
 
   //  void deleteAllByPublicId(String publicId);
 
-    @Query("SELECT p.imageUrl FROM  PictureEntity p")
+    @Query(value = "SELECT p.url FROM pictures p", nativeQuery = true)
     List<String> findAllUrls();
 }

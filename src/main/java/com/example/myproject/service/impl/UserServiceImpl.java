@@ -44,8 +44,6 @@ public class UserServiceImpl implements UserService {
     @PostConstruct
     public void initializeUsersAndRoles() {
       initializeRoles();
-        //initializeUsers();
-
     }
 
     @Override
@@ -55,7 +53,7 @@ public class UserServiceImpl implements UserService {
         Set<UserDTO> list = new HashSet<>();
 
         if (userRepository.count() >= 3) {
-            for (int i=0; i<3; i++){
+            while (list.size() <3) {
                 Long id = random.nextLong(1,this.userRepository.count());
                 UserEntity byId =  findById(id);
                 UserDTO profileHomeView = mapToHomeView(byId);
@@ -148,11 +146,11 @@ public class UserServiceImpl implements UserService {
         user.setLastName(userDTO.getLastName());
         user.setDescription("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.");
         user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
-        if (user.getUsername().equals("admin")) {
-            user.setRoles(Set.of(userRoleRepository.findByRole(UserRoleEnum.ADMIN)));
-        } else {
+//        if (user.getUsername().equals("admin")) {
+//            user.setRoles(Set.of(userRoleRepository.findByRole(UserRoleEnum.ADMIN)));
+//        } else {
         user.setRoles(Set.of(userRole));
-        }
+//        }
 
         userRepository.save(user);
 

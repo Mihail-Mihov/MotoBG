@@ -22,7 +22,7 @@ public class OfferEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
-    private String tittle;
+    private String title;
     private Integer rate;
     // TODO @Column(columnDefinition = "longtext")
     @Lob
@@ -41,7 +41,7 @@ public class OfferEntity {
     private String brand;
     private String model;
     private String city;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date year;
     @OneToMany(mappedBy = "offer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<CommentEntity> comments;

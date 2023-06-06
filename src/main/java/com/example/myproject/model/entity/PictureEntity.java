@@ -17,19 +17,10 @@ public class PictureEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String title;
-    private String imageUrl;
+    private String url;
+    private String publicId;
     @ManyToOne
     private UserEntity author;
     @ManyToOne
     private OfferEntity offer;
-
-
-//    public String getPublicId() {
-//        return publicId;
-//    }
-//
-//    public void setPublicId(String publicId) {
-//        this.publicId = publicId;
-//    }
 }

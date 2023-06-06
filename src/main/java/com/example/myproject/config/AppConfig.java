@@ -14,13 +14,13 @@ public class AppConfig {
     public AppConfig(CloudinaryConfig config) {
         this.config = config;
     }
-//TODO
+
     @Bean
     public Cloudinary cloudinary(){
         return new Cloudinary(Map.of(
-                "cloud_name", "pib",
-                "api_key", "633745713139312",
-                "api_secret", "TfjJfvwe2VOVNm-7o9ZbiVK67x0"
+                "cloud_name",  config.getCloudName(),
+                "api_key", config.getApiKey(),
+                "api_secret", config.getApiSecret()
         ));
     }
 }

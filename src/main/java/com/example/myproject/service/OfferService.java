@@ -17,6 +17,7 @@ public interface OfferService {
     List<OfferDTO> getByKeyword(String keyword);
 
     OfferDTO findOfferById(Long id, String currentUser);
+    OfferEntity findOfferEntityById(Long id);
 
     void deleteOffer(Long id);
 
@@ -24,7 +25,7 @@ public interface OfferService {
 
     void updateOffer(OfferDTO offerDTO);
 
-    OfferDTO addOffer(OfferDTO offerDTO, String ownerId);
+    OfferDTO addOffer(OfferDTO offerDTO, String ownerId, String imageUrl);
 
     List<OfferEntity> getAllByAuthor(Long authorId);
 

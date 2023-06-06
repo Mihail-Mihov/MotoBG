@@ -4,6 +4,7 @@ import com.example.myproject.model.binding.OfferDTO;
 import com.example.myproject.model.entity.*;
 import com.example.myproject.model.enums.UserRoleEnum;
 import com.example.myproject.repository.*;
+import com.example.myproject.service.CloudinaryImage;
 import com.example.myproject.service.OfferService;
 import com.example.myproject.web.exception.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
@@ -62,18 +63,25 @@ public class OfferServiceImpl implements OfferService {
     }
 
     @Override
+    public OfferEntity findOfferEntityById(Long id) {
+        return offerRepository.
+                findById(id).
+                orElseThrow(() -> new ObjectNotFoundException("No such object"));
+    }
+
+    @Override
     public OfferDTO findOfferById(Long id, String currentUser) {
-        return  offerRepository.
+        return offerRepository.
                 findById(id).
                 map(o -> mapToOfferDTO(currentUser, o))
                 .get();
-
     }
+
     private OfferDTO mapToOfferDTO(String currentUser, OfferEntity offer) {
 
         return OfferDTO.builder()
                 .id(offer.getId())
-                .tittle(offer.getTittle())
+                .title(offer.getTitle())
                 .imageUrl(offer.getImageUrl())
                 .price(offer.getPrice())
                 .description(offer.getDescription())
@@ -124,11 +132,11 @@ public class OfferServiceImpl implements OfferService {
     @Override
     public void updateOffer(OfferDTO offerModel) {
 
-        OfferEntity offerEntity  =offerRepository.findById(offerModel.getId()).orElseThrow(() ->
+        OfferEntity offerEntity = offerRepository.findById(offerModel.getId()).orElseThrow(() ->
                 new ObjectNotFoundException("There is no offer with id: " + offerModel.getId()));
 
 
-        offerEntity.setTittle(offerModel.getTittle());
+        offerEntity.setTitle(offerModel.getTitle());
         offerEntity.setItemCondition(offerModel.getItemCondition());
         offerEntity.setCity(offerModel.getCity());
         offerEntity.setBrand(offerModel.getBrand());
@@ -148,20 +156,18 @@ public class OfferServiceImpl implements OfferService {
     }
 
     @Override
-    public OfferDTO addOffer(OfferDTO offerDTO, String username) {
-       UserEntity userEntity = userRepository.findByUsername(username).orElseThrow();
+    public OfferDTO addOffer(OfferDTO offerDTO, String username, String imageUrl) {
+
+        UserEntity userEntity = userRepository.findByUsername(username).orElseThrow();
         OfferEntity offerEntity = modelMapper.map(offerDTO, OfferEntity.class);
-       if(offerDTO.getImageUrl().isEmpty()) {
-           offerEntity.setImageUrl("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPZGfs_m5LuvZI7FK6y2EclXvkh1htO5LwmkasO7KdNPC1eSLbdhqJpWWryT40Xwokjfg&usqp=CAU");
-       }
-     //   offerEntity.setCreated(Instant.now());
+        offerEntity.setImageUrl(imageUrl);
         offerEntity.setAuthor(userEntity);
 
         OfferEntity offer = offerRepository.save(offerEntity);
         return modelMapper.map(offer, OfferDTO.class);
     }
 
-    public List<CityEntity> getCities(){
+    public List<CityEntity> getCities() {
         return cityRepository.findAll();
     }
 

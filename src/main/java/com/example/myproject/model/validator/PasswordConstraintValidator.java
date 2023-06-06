@@ -30,7 +30,7 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
                 // at least one lower-case character
                 new CharacterRule(EnglishCharacterData.LowerCase, 1),
                 // at least one digit character
-                new CharacterRule(EnglishCharacterData.Digit, 1),
+                //new CharacterRule(EnglishCharacterData.Digit, 1),
                 // no whitespace
                 new WhitespaceRule()
                 ));

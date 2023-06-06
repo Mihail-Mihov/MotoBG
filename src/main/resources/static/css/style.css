@@ -201,6 +201,8 @@ body{margin-top:20px;
 
 html, body {
     height: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
     background-color: #eeeeee;
 
 }
@@ -263,7 +265,7 @@ html, body {
     font-size: 17px;
     font-weight: 300;
     line-height: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 
@@ -282,10 +284,10 @@ html, body {
     background-color: #fff;
     font-size: 15px;
     font-weight: 300;
-    color: #8D8D8D;
+    color: #302929;
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
-    margin-top: 16px;
+    margin-top: 2px;
 }
 
 
@@ -313,7 +315,8 @@ html, body {
     border: 0;
     font-size: 15px;
     font-weight: 300;
-    color: #8D8D8D;
+    #302929
+    color: #302929;
     outline: none;
     resize: none;
     height: 120px;
@@ -325,7 +328,7 @@ html, body {
 .form-content textarea:hover, .form-content textarea:focus {
     border: 0;
     background-color: #ebeff8;
-    color: #8D8D8D;
+    color: #302929;
 }
 
 .mv-up{

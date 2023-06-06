@@ -1,6 +1,9 @@
 package com.example.myproject.service.impl;
 
 import com.cloudinary.Cloudinary;
+import com.example.myproject.model.entity.OfferEntity;
+import com.example.myproject.model.entity.PictureEntity;
+import com.example.myproject.model.entity.UserEntity;
 import com.example.myproject.service.CloudinaryImage;
 import com.example.myproject.service.CloudinaryService;
 import org.springframework.stereotype.Service;
@@ -36,7 +39,6 @@ public class CloudinaryServiceImpl implements CloudinaryService {
                     "https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg");
             String publicId = uploadResult.getOrDefault(PUBLIC_ID, "");
 
-
             CloudinaryImage cloudinaryImage = new CloudinaryImage();
             cloudinaryImage.setPublicId(publicId);
             cloudinaryImage.setUrl(url);
@@ -45,6 +47,7 @@ public class CloudinaryServiceImpl implements CloudinaryService {
             tempFile.delete();
         }
     }
+
 
     @Override
     public boolean delete(String publicId) {
